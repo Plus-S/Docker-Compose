@@ -1,0 +1,44 @@
+version: '3'
+services:
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - plus-s-api
+      - db
+    restart: always
+    environment:
+      DOMAINS: 'api.plus-s.com.ar -> http://plus-s-api:8000'
+      STAGE: 'production' # Don't use production until staging works
+      FORCE_RENEW: 'true'
+
+  db:
+    image: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    #volumes:
+    #  - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=splusdb
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=PlusS1234
+
+  plus-s-api:
+    container_name: plus-s-api
+    image: rellumsoftware/plus-s-api:latest
+        command: python manage.py runserver plus-s-api:8000
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=splusdb
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=PlusS1234
+
+volumes:
+  db:
+    driver: local
