@@ -31,7 +31,7 @@ services:
   plus-s-api:
     container_name: plus-s-api
     image: rellumsoftware/plus-s-api:latest
-        command: python manage.py runserver plus-s-api:8000
+    command: python manage.py runserver plus-s-api:8000
     ports:
       - "8000:8000"
     environment:
