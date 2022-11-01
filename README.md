@@ -1,4 +1,4 @@
-# Docker-Compose
+# Repositorio Docker-compose Plus-S
 ## VM Setup
 ### Instalar Docker y Git
 ```
@@ -31,4 +31,15 @@ docker-compose --version
 ### Clonar repositorio de docker-compose
 ```
 git clone https://github.com/Plus-s/Docker-Compose.git
+```
+
+## Iniciar Docker Container
+### Ir a la carpeta donde se encuentra docker-compose.yml
+```
+cd Docker-Compose/
+```
+
+### Iniciar contenedor
+```
+docker-compose up -d
 ```
