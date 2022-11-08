@@ -35,7 +35,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./:/usr/src/app/
+      - .:/code
     environment:
       - POSTGRES_NAME=${PROD_DB_NAME}
       - POSTGRES_USER=${PROD_DB_USER}
