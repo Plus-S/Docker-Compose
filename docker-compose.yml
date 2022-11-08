@@ -25,3 +25,13 @@ services:
       - POSTGRES_USER=${PROD_DB_USER}
       - POSTGRES_PASSWORD=${PROD_DB_PASSWORD}
       - POSTGRES_HOST=${PROD_DB_HOST}
+      
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
