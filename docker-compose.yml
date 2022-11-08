@@ -15,30 +15,31 @@ services:
       STAGE: 'production' # Don't use production until staging works
       FORCE_RENEW: 'true'
 
-  db:
-    image: postgres
-    volumes:
-      - db:/var/lib/postgresql/data
-    #volumes:
-    #  - ./data/db:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=splusdb
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=PlusS1234
+  #db:
+  #  image: postgres
+  #  volumes:
+  #    - db:/var/lib/postgresql/data
+  #  #volumes:
+  #  #  - ./data/db:/var/lib/postgresql/data
+  #  ports:
+  #    - "5432:5432"
+  #  environment:
+  #    - POSTGRES_DB=splusdb
+  #    - POSTGRES_USER=root
+  #    - POSTGRES_PASSWORD=PlusS1234
 
-  plus-s-api:
-    container_name: plus-s-api
+  api-prod:
+    container_name: api-prod
     image: rellumsoftware/plus-s-api:latest
     command: python manage.py runserver plus-s-api:8000
     ports:
       - "8000:8000"
     environment:
-      - POSTGRES_NAME=splusdb
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=PlusS1234
+      - POSTGRES_NAME=${PROD_DB_NAME}
+      - POSTGRES_USER=${PROD_DB_USER}
+      - POSTGRES_PASSWORD=${PROD_DB_PASSWORD}
+      - POSTGRES_HOST=${PROD_DB_HOST}
 
-volumes:
-  db:
-    driver: local
+#volumes:
+#  db:
+#    driver: local
