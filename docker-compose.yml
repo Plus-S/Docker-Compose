@@ -28,8 +28,8 @@ services:
   #    - POSTGRES_USER=root
   #    - POSTGRES_PASSWORD=PlusS1234
 
-  api-prod:
-    container_name: api-prod
+  plus-s-api:
+    container_name: plus-s-api
     image: ghcr.io/plus-s/back-end-prod:latest
     command: python manage.py runserver plus-s-api:8000
     ports:
