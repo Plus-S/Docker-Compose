@@ -30,7 +30,7 @@ services:
 
   api-prod:
     container_name: api-prod
-    image: rellumsoftware/plus-s-api:latest
+    image: ghcr.io/plus-s/back-end-prod:latest
     command: python manage.py runserver plus-s-api:8000
     ports:
       - "8000:8000"
