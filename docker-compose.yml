@@ -17,6 +17,7 @@ services:
 
   plus-s-api:
     image: ghcr.io/plus-s/back-end-prod:latest
+    command: python manage.py runserver plus-s-api:8000
     ports:
       - "8000:8000"
     volumes:
