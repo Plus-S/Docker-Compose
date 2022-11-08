@@ -11,7 +11,7 @@ services:
       - db
     restart: always
     environment:
-      DOMAINS: 'api.plus-s.com.ar -> http://plus-s-api:8000'
+      DOMAINS: 'api4.plus-s.com.ar -> http://plus-s-api:8000'
       STAGE: 'production' # Don't use production until staging works
       FORCE_RENEW: 'true'
 
