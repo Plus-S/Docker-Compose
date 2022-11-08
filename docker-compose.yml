@@ -25,6 +25,13 @@ services:
       - POSTGRES_USER=${PROD_DB_USER}
       - POSTGRES_PASSWORD=${PROD_DB_PASSWORD}
       - POSTGRES_HOST=${PROD_DB_HOST}
+    deploy:
+        resources:
+            limits:
+              memory: 512M
+            reservations:
+              memory: 512M
+
       
   pgadmin:
     container_name: pgadmin4_container
