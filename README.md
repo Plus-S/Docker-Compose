@@ -38,6 +38,12 @@ git clone https://github.com/Plus-s/Docker-Compose.git
 ```
 cd Docker-Compose/
 ```
+### Iniciar sesión en el registro de contenedores de GitHub
+```
+export CR_PAT=GITHUB_TOKEN
+echo $CR_PAT | docker login ghcr.io -u GITHUB_USERNAME --password-stdin
+> Login Succeeded
+```
 
 ### Iniciar contenedor
 ```
