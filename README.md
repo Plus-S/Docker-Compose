@@ -1,50 +1,36 @@
 # Repositorio Docker-compose Plus-S
 ## VM Setup
-### Instalar Docker y Git
+### Descargar e instalar componentes necesarios
+
++ Copiar contenido de vm-initialization.sh al portapapeles.
++ Abrimos el editor de texto nano:
 ```
-sudo yum update
-sudo yum install docker
-sudo yum install git -y
-sudo usermod -a -G docker ec2-user
-newgrp docker
+sudo nano vm-initialization.sh
+```
++ Pegamos el contenido en ese archivo, y guardamos. (CTRL + X, Y, ENTER)
++ Hacemos que el archivo sea ejecutable:
+```
+chmod +x vm-initialization.sh
 ```
 
-### Instalar docker-compose
+## Agregar credenciales de GitHub y Github Containers (Docker)
+### Iniciar sesión en Github
+Ejecutar el siguiente comando, seleccionando GitHub.com, y acceso con token.
 ```
-wget https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)
-sudo mv docker-compose-$(uname -s)-$(uname -m) /usr/local/bin/docker-compose
-sudo chmod -v +x /usr/local/bin/docker-compose
-```
-
-### Iniciar Docker al bootear
-```
-sudo systemctl enable docker.service
-sudo systemctl start docker.service
+gh auth login
 ```
 
-### Verificar instalación de Docker y docker-compose
-```
-docker --version
-docker-compose --version
-```
-
-### Clonar repositorio de docker-compose
-```
-git clone https://github.com/Plus-s/Docker-Compose.git
-```
-
-## Iniciar Docker Container
-### Ir a la carpeta donde se encuentra docker-compose.yml
-```
-cd Docker-Compose/
-```
 ### Iniciar sesión en el registro de contenedores de GitHub
 ```
 export CR_PAT=GITHUB_TOKEN
 echo $CR_PAT | docker login ghcr.io -u GITHUB_USERNAME --password-stdin
 > Login Succeeded
 ```
-
+## Iniciar Docker Container
+### Ir a la carpeta donde se encuentra docker-compose.yml
+```
+cd Docker-Compose/
+```
 ### Iniciar contenedor
 ```
 docker-compose up -d
