@@ -26,6 +26,11 @@ export CR_PAT=GITHUB_TOKEN
 echo $CR_PAT | docker login ghcr.io -u GITHUB_USERNAME --password-stdin
 > Login Succeeded
 ```
+
+### Clonar repositorio con Docker-compose
+```
+git clone https://github.com/Plus-S/Docker-Compose.git
+```
 ## Iniciar Docker Container
 ### Ir a la carpeta donde se encuentra docker-compose.yml
 ```
