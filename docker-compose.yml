@@ -8,7 +8,6 @@ services:
       - '443:443'
     links:
       - plus-s-api
-      - db
     restart: always
     environment:
       DOMAINS: 'api4.plus-s.com.ar -> http://plus-s-api:8000'
