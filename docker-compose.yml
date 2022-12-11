@@ -25,6 +25,21 @@ services:
       - POSTGRES_PASSWORD=${PROD_DB_PASSWORD}
       - POSTGRES_HOST=${PROD_DB_HOST}
 
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8080:8080
+    environment:
+      DOZZLE_LEVEL: trace
+    healthcheck:
+      test: [ "CMD", "/dozzle", "healthcheck" ]
+      interval: 3s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
       
   pgadmin:
     container_name: pgadmin4_container
