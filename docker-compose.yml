@@ -9,6 +9,8 @@ services:
     links:
       - plus-s-api
     restart: always
+    labels:
+      com.centurylinklabs.watchtower.enable: false
     environment:
       DOMAINS: 'api.plus-s.com.ar -> http://plus-s-api:8000'
       #STAGE: 'production' # Don't use production until staging works
@@ -32,6 +34,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8080:8080
+    labels:
+      com.centurylinklabs.watchtower.enable: false
     environment:
       DOZZLE_LEVEL: trace
     healthcheck:
@@ -41,10 +45,26 @@ services:
       retries: 5
       start_period: 30s
       
+   watchtower:
+    image: containrrr/watchtower
+    environment:
+      - REPO_USER=${REPO_USER}
+      - REPO_PASS=${REPO_PASS}
+      - WATCHTOWER_POLL_INTERVAL=${WATCHTOWER_INTERVAL}
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+    labels:
+      com.centurylinklabs.watchtower.enable: false
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/watchtower/config/:/config/
+      
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
     restart: always
+    labels:
+      com.centurylinklabs.watchtower.enable: false
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
