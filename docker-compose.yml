@@ -15,6 +15,9 @@ services:
       DOMAINS: 'api.plus-s.com.ar -> http://plus-s-api:8000'
       #STAGE: 'production' # Don't use production until staging works
       FORCE_RENEW: 'true'
+      PROXY_CONNECT_TIMEOUT: 60
+      PROXY_SEND_TIMEOUT: 60;
+      PROXY_READ_TIMEOUT: 60;
 
   plus-s-api:
     image: ghcr.io/plus-s/back-end-prod:latest
